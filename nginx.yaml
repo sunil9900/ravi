@@ -1,5 +1,4 @@
-kind: Deployment
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 metadata:
   name: nginx-deployment
 spec:
@@ -30,4 +29,4 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 8080
-      nodeport: 30000
+      nodePort: 30000
