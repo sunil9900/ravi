@@ -12,12 +12,13 @@ spec:
   template:
     metadata:
       labels:
-        deploy: nginx
+        app: nginx
     spec:
       containers:
         - name: nginx
           image: nginx
-
+          ports:
+          - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
@@ -30,5 +31,5 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 8080
+      targetPort: 80
       nodePort: 30000
