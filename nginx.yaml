@@ -1,0 +1,33 @@
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 3
+  strategy: Recreate
+  selector:
+    matchLabels:
+      deploy: nginx
+  template:
+    metadata:
+      labels:
+        deploy: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  selector:
+    app: nginx
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+      nodeport: 30000
